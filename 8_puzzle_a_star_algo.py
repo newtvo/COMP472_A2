@@ -71,6 +71,7 @@ class Operator:
       x_new = x - 1
       y_new = y
 
+    #check left-right state    
     if i == 2:
       x_new = x
       y_new = y + 1
