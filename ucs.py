@@ -1,4 +1,5 @@
 import heapq
+import timeit
 from rules import *
 
 
@@ -6,7 +7,7 @@ def list_to_string(input):
     return ''.join(str(e) for e in input)
 
 
-def uniform_cost(puzzle):
+def ucs(puzzle):
     visited = set()
     queue = []
     heapq.heappush(queue, (0,[(0, puzzle)]))
@@ -48,9 +49,20 @@ def uniform_cost(puzzle):
 
 
 if __name__ == '__main__':
-    cost, path ,visited= uniform_cost([1, 0, 3, 6, 5, 2, 7, 4])
+    output = open("ucs_output.txt", "w")
+    search = open("ucs_search.txt", "w")
+    start = timeit.default_timer()
+    cost, path, visited = ucs([3, 0, 1, 4, 2, 6, 5, 7])
+    stop = timeit.default_timer()
+    print("TOTAL COST")
     print(cost)
+    print("SUCCESSPATH")
     for i in path:
+        output.write("{} {} {}\n".format("0",i[0],' '.join(str(e) for e in i[1])))
         print(i)
+        # output.write(str(i) +"\n")
+    output.write("Total cost: {}, Runtime: {}".format(cost, stop-start))
+    print("VISITED STATES")
     for i in visited:
+        search.write(str(i) + "\n")
         print(i)

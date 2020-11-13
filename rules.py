@@ -26,3 +26,16 @@ diagonal_moves = {
     4: [1, 3],
     7: [0, 2]
 }
+
+
+def heuristic1(current_state):
+    count_1 = 0
+    count_2 = 0
+    for i in range(len(current_state)):
+        if current_state[i] != goal_1[i]:
+            count_1 += 1
+        if current_state[i] != goal_2[i]:
+            count_2 += 1
+    return min(count_1,count_2)
+
+# def heuristic2(current_state):
