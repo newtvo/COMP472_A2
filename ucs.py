@@ -10,14 +10,16 @@ def list_to_string(input):
 def ucs(puzzle):
     visited = set()
     queue = []
+    search = []
     heapq.heappush(queue, (0,[(0, 0, puzzle)]))
     while queue:
         cost, path = heapq.heappop(queue)
         current_state = path[-1][2]
         if list_to_string(current_state) not in visited:
             visited.add(list_to_string(current_state))
+            search.append(str(cost) + ' ' + '0 ' + list_to_string(current_state))
         if current_state == goal_1 or current_state == goal_2:
-            return cost, path, visited
+            return cost, path, search
         index = current_state.index(0)
         for move in regular_moves[index]:
             new_path = list(path)
@@ -67,5 +69,5 @@ if __name__ == '__main__':
     output.write("Total cost: {}, Runtime: {}".format(cost, stop-start))
     print("VISITED STATES")
     for i in visited:
-        search.write(str(i) + "\n")
+        search.write("{} {}\n".format("0", str(i)))
         print(i)
