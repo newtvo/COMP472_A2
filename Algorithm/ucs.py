@@ -1,7 +1,7 @@
 import heapq
 import timeit
-from rules import *
-
+from Algorithm.rules import *
+from Output.output import *
 
 def list_to_string(input):
     return ' '.join(str(e) for e in input)
@@ -50,24 +50,28 @@ def ucs(puzzle):
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (new_cost,new_path))
 
-
-
-
-if __name__ == '__main__':
-    output = open("ucs_output.txt", "w")
-    search = open("ucs_search.txt", "w")
+def ucs_run(puzzle):
     start = timeit.default_timer()
-    cost, path, visited = ucs([3, 0, 1, 4, 2, 6, 5, 7])
+    cost, path, visited = ucs(puzzle)
     stop = timeit.default_timer()
-    print("TOTAL COST")
-    print(cost)
-    print("SUCCESSPATH")
-    for i in path:
-        output.write("{} {} {}\n".format(i[0],i[1],' '.join(str(e) for e in i[2])))
-        print(i)
-        # output.write(str(i) +"\n")
-    output.write("Total cost: {}, Runtime: {}".format(cost, stop-start))
-    print("VISITED STATES")
-    for i in visited:
-        search.write("{} {}\n".format("0", str(i)))
-        print(i)
+    timer = stop - start
+    if stop > 60:
+        print("NO SOLUTION")
+    else:
+        print("SUCCESSPATH")
+        for i in path:
+         print(i)
+        print("TOTAL COST")
+        print(cost)
+        print("VISITED STATES")
+        for i in visited:
+            print(i)
+        output_file("ucs_solution.txt", "ucs_search.txt", cost, path, visited, timer)
+
+
+
+
+
+
+
+
