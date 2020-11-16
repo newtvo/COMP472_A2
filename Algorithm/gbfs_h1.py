@@ -19,7 +19,8 @@ def gbfs(puzzle):
         current_state = path[-1][2]
         if list_to_string(current_state) not in visited:
             visited.add(list_to_string(current_state))
-            search.append(str(h) + ' ' + list_to_string(current_state))
+            # search.append(str(h) + ' ' + list_to_string(current_state))
+            search.append(str(h + 0) + ' ' + "0"+ ' ' + str(h) + ' ' + list_to_string(current_state))
         if current_state == goal_1 or current_state == goal_2:
             return cost, path, search
         index = current_state.index(0)
@@ -56,7 +57,7 @@ def gbfs(puzzle):
                     heapq.heappush(queue, (heuristic,new_path, new_cost))
 
 
-def gbfs_run(puzzle):
+def gbfs_h1_run(puzzle):
     start = timeit.default_timer()
     cost, path, visited = gbfs(puzzle)
     stop = timeit.default_timer()

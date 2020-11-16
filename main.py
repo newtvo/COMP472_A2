@@ -1,6 +1,8 @@
+from Algorithm.a_star_h2 import a_star_h2_run
+from Algorithm.gbfs_h2 import gbfs_h2_run
 from Algorithm.ucs import *
-from Algorithm.gbfs import *
-from Algorithm.a_star import *
+from Algorithm.gbfs_h1 import *
+from Algorithm.a_star_h1 import *
 
 def read_input(file_name, puzzle):
     with open(file_name, "r") as puzzles:
@@ -24,9 +26,15 @@ if __name__ == '__main__':
         print("<-----------------------------------------UCS SEARCH ALGORITHM------------------------------------------>")
         ucs_run(p)
         print("<-----------------------------------------GBFS SEARCH ALGORITHM------------------------------------------>")
-        gbfs_run(p)
+        print("<------------------------------------------HEURISTIC 1------------------------------------------->")
+        gbfs_h1_run(p)
+        print("<------------------------------------------HEURISTIC 2------------------------------------------->")
+        gbfs_h2_run(p)
         print("<------------------------------------------A* SEARCH ALGORITHM------------------------------------------->")
-        a_star_run(p)
+        print("<------------------------------------------HEURISTIC 1------------------------------------------->")
+        a_star_h1_run(p)
+        print("<------------------------------------------HEURISTIC 2------------------------------------------->")
+        a_star_h2_run(p)
         print("=========================================================================================================")
 
 

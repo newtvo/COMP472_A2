@@ -21,7 +21,8 @@ def output_file(file_name_solution, file_name_search, cost, path, visited, timer
     search = open('Output/' + file_name_search, append_write_search)
     #write output for search files
     for i in visited:
-        search.write("{} {}\n".format("0", str(i)))
+        # search.write("{} {}\n".format("0", str(i)))
+        search.write(str(i) + "\n")
     search.write("\n=======================================================\n")
 
     #close IO

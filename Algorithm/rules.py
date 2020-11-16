@@ -27,7 +27,7 @@ diagonal_moves = {
     7: [0, 2]
 }
 
-
+#number of misplaced tiles
 def heuristic1(current_state):
     count_1 = 0
     count_2 = 0
@@ -38,4 +38,13 @@ def heuristic1(current_state):
             count_2 += 1
     return min(count_1,count_2)
 
-# def heuristic2(current_state):
+#sum of Manhattan distances for each tile to its goal position
+def heuristic2(current_state):
+    sum_1 = 0
+    sum_2 = 0
+    for i in range(len(current_state)):
+        sum_1 += abs((current_state[i]) % 3 - goal_1[i] % 3) + abs((current_state[i]) // 3 - goal_1[i] // 3)
+    for i in range(len(current_state)):
+        sum_2 += abs((current_state[i]) % 3 - goal_2[i] % 3) + abs((current_state[i]) // 3 - goal_2[i] // 3)
+    return min(sum_1, sum_2)
+
