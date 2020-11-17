@@ -13,7 +13,7 @@ def a_star(puzzle):
     visited = set()
     search = [] #include g(n) + h(n)
     queue = []
-    heapq.heappush(queue, (heuristic1(puzzle),[(0, 0, puzzle)],0))
+    heapq.heappush(queue, (heuristic2(puzzle),[(0, 0, puzzle)],0))
     while queue:
         f, path, cost = heapq.heappop(queue)
         current_state = path[-1][2]
@@ -41,7 +41,7 @@ def a_star(puzzle):
                 tile_moved = new_state[move]
                 new_state[index], new_state[move] = new_state[move], new_state[index]
                 new_path.append((tile_moved, wrapping_cost, new_state))
-                heuristic = heuristic1(new_state)
+                heuristic = heuristic2(new_state)
                 new_cost = cost + wrapping_cost
                 f_cost = heuristic + new_cost
                 if list_to_string(new_state) not in visited:
@@ -53,12 +53,12 @@ def a_star(puzzle):
                 new_state[index], new_state[move] = new_state[move], new_state[index]
                 new_path.append((tile_moved, diagonal_cost, new_state))
                 new_cost = cost + diagonal_cost
-                heuristic = heuristic1(new_state)
+                heuristic = heuristic2(new_state)
                 f_cost = heuristic + new_cost
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (f_cost, new_path, new_cost))
 
-def a_star_h2_run(puzzle):
+def a_star_h2_run(numb, puzzle):
     start = timeit.default_timer()
     cost, path, visited = a_star(puzzle)
     stop = timeit.default_timer()
@@ -74,5 +74,5 @@ def a_star_h2_run(puzzle):
      print("VISITED STATES")
      for i in visited:
         print(i)
-     output_file("astar_h2_solution.txt", "astar_h2_search.txt", cost, path, visited, timer)
+     output_file(str(numb) + "_astar_h2_solution.txt", str(numb) + "_astar_h2_search.txt", cost, path, visited, timer)
 

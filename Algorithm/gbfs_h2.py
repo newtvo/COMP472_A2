@@ -13,7 +13,7 @@ def gbfs(puzzle):
     visited = set()
     search = [] #include h(n)
     queue = []
-    heapq.heappush(queue, (heuristic1(puzzle),[(0, 0, puzzle)],0))
+    heapq.heappush(queue, (heuristic2(puzzle),[(0, 0, puzzle)],0))
     while queue:
         h, path, cost = heapq.heappop(queue)
         current_state = path[-1][2]
@@ -41,7 +41,7 @@ def gbfs(puzzle):
                 tile_moved = new_state[move]
                 new_state[index], new_state[move] = new_state[move], new_state[index]
                 new_path.append((tile_moved, wrapping_cost, new_state))
-                heuristic = heuristic1(new_state)
+                heuristic = heuristic2(new_state)
                 new_cost = cost + wrapping_cost
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (heuristic,new_path, new_cost))
@@ -52,12 +52,12 @@ def gbfs(puzzle):
                 new_state[index], new_state[move] = new_state[move], new_state[index]
                 new_path.append((tile_moved, wrapping_cost, new_state))
                 new_cost = cost + diagonal_cost
-                heuristic = heuristic1(new_state)
+                heuristic = heuristic2(new_state)
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (heuristic,new_path, new_cost))
 
 
-def gbfs_h2_run(puzzle):
+def gbfs_h2_run(numb, puzzle):
     start = timeit.default_timer()
     cost, path, visited = gbfs(puzzle)
     stop = timeit.default_timer()
@@ -73,5 +73,5 @@ def gbfs_h2_run(puzzle):
      print("VISITED STATES")
      for i in visited:
         print(i)
-     output_file("gbfs_h2_solution.txt", "gbfs_h2_search.txt", cost, path, visited, timer)
+     output_file(str(numb) + "_gbfs_h2_solution.txt", str(numb) +  "_gbfs_h2_search.txt", cost, path, visited, timer)
 

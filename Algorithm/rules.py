@@ -40,11 +40,16 @@ def heuristic1(current_state):
 
 #sum of Manhattan distances for each tile to its goal position
 def heuristic2(current_state):
-    sum_1 = 0
-    sum_2 = 0
-    for i in range(len(current_state)):
-        sum_1 += abs((current_state[i]) % 3 - goal_1[i] % 3) + abs((current_state[i]) // 3 - goal_1[i] // 3)
-    for i in range(len(current_state)):
-        sum_2 += abs((current_state[i]) % 3 - goal_2[i] % 3) + abs((current_state[i]) // 3 - goal_2[i] // 3)
-    return min(sum_1, sum_2)
+    dist_1 = sum(abs(b % 4 - g % 4) + abs(b // 4 - g // 4)
+        for b, g in ((current_state.index(i), goal_1.index(i)) for i in range(1, 8)))
+    dist_2 = sum(abs(b % 4 - g % 4) + abs(b // 4 - g // 4)
+                 for b, g in ((current_state.index(i), goal_2.index(i)) for i in range(1, 8)))
+    return min(dist_1, dist_2)
 
+# if __name__ == '__main__':
+#     #heuristic2([3,0,1,4,2,6,5,7])
+#     board = [6,3,4,7,1,2,5,0]
+#     goal = [1, 2, 3, 4, 5, 6, 7, 0]
+#     dist = sum(abs(b % 4 - g % 4) + abs(b // 4 - g // 4)
+#         for b, g in ((board.index(i), goal.index(i)) for i in range(1, 8)))
+#     print(dist)
