@@ -1,5 +1,5 @@
 # COMP 472 - ASSIGNMENT 2/FALL 2020 <br>
-## URL Github Link: https://github.com/newtvo/COMP472_A2/blob/main/README.md
+## URL Github Link: [COMP_472_A2_Softbois](https://github.com/newtvo/COMP472_A2)
 ## Getting Started
 1. The purpose of this assignment is to make you experiment with 3 algorithms in machine learning:  <br>
   * Uniformed Cost Search
