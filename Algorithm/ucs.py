@@ -51,7 +51,7 @@ def ucs(puzzle):
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (new_cost,new_path))
 
-def ucs_run(numb, puzzle):
+def ucs_run(numb, puzzle, output = True):
     start = timeit.default_timer()
     cost, path, visited = ucs(puzzle)
     stop = timeit.default_timer()
@@ -59,16 +59,17 @@ def ucs_run(numb, puzzle):
     if stop > 60:
         print("NO SOLUTION")
     else:
-        print("SUCCESSPATH")
-        for i in path:
-         print(i)
-        print("TOTAL COST")
-        print(cost)
-        print("VISITED STATES")
-        for i in visited:
-            print(i)
-        output_file(str(numb) + "_ucs_solution.txt", str(numb) + "_ucs_search.txt", cost, path, visited, timer)
-
+        # print("SUCCESSPATH")
+        # for i in path:
+        #  print(i)
+        # print("TOTAL COST")
+        # print(cost)
+        # print("VISITED STATES")
+        # for i in visited:
+        #     print(i)
+        if output:
+            output_file(str(numb) + "_ucs_solution.txt", str(numb) + "_ucs_search.txt", cost, path, visited, timer)
+    return timer, len(visited), len(path), cost
 
 
 

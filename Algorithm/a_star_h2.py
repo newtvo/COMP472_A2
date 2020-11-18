@@ -58,21 +58,23 @@ def a_star(puzzle):
                 if list_to_string(new_state) not in visited:
                     heapq.heappush(queue, (f_cost, new_path, new_cost))
 
-def a_star_h2_run(numb, puzzle):
+def a_star_h2_run(numb, puzzle, output=True):
     start = timeit.default_timer()
     cost, path, visited = a_star(puzzle)
     stop = timeit.default_timer()
     timer = stop - start
     if stop > 60:
         print("NO SOLUTION")
+        return "NO SOLUTION"
     else:
-     print("SUCCESSPATH")
-     for i in path:
-        print(i)
-     print("TOTAL COST")
-     print(cost)
-     print("VISITED STATES")
-     for i in visited:
-        print(i)
-     output_file(str(numb) + "_astar_h2_solution.txt", str(numb) + "_astar_h2_search.txt", cost, path, visited, timer)
-
+     # print("SUCCESSPATH")
+     # for i in path:
+     #    print(i)
+     # print("TOTAL COST")
+     # print(cost)
+     # print("VISITED STATES")
+     # for i in visited:
+     #    print(i)
+        if output:
+            output_file(str(numb) + "_astar_h2_solution.txt", str(numb) + "_astar_h2_search.txt", cost, path, visited, timer)
+    return timer, len(visited), len(path), cost

@@ -1,5 +1,8 @@
 # 2x5 puzzle
-scaled_goal_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+scaled_goal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+regular_cost = 1
+wrapping_cost = 2
+diagonal_cost = 3
 scaled_regular_moves = {
     0: [1, 5],
     1: [0, 2, 6],
@@ -24,7 +27,11 @@ scaled_diagonal_moves = {
     5: [1, 4],
     9: [3, 0]
 }
-def scaled_heuristic2(current_state):
-    dist_1 = sum(abs(b % 5 - g % 5) + abs(b // 5 - g // 5)
-                 for b, g in ((current_state.index(i), scaled_goal_1.index(i)) for i in range(1, 9)))
-    return dist_1
+
+
+def heuristic1(current_state):
+    count = 0
+    for i in range(len(current_state)):
+        if current_state[i] != scaled_goal[i]:
+            count += 1
+    return count

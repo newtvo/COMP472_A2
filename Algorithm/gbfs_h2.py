@@ -57,7 +57,7 @@ def gbfs(puzzle):
                     heapq.heappush(queue, (heuristic,new_path, new_cost))
 
 
-def gbfs_h2_run(numb, puzzle):
+def gbfs_h2_run(numb, puzzle, output=False):
     start = timeit.default_timer()
     cost, path, visited = gbfs(puzzle)
     stop = timeit.default_timer()
@@ -65,13 +65,14 @@ def gbfs_h2_run(numb, puzzle):
     if stop > 60:
         print("NO SOLUTION")
     else:
-     print("SUCCESSPATH")
-     for i in path:
-        print(i)
-     print("TOTAL COST")
-     print(cost)
-     print("VISITED STATES")
-     for i in visited:
-        print(i)
-     output_file(str(numb) + "_gbfs_h2_solution.txt", str(numb) +  "_gbfs_h2_search.txt", cost, path, visited, timer)
-
+     # print("SUCCESSPATH")
+     # for i in path:
+     #    print(i)
+     # print("TOTAL COST")
+     # print(cost)
+     # print("VISITED STATES")
+     # for i in visited:
+     #    print(i)
+        if output:
+            output_file(str(numb) + "_gbfs_h2_solution.txt", str(numb) +  "_gbfs_h2_search.txt", cost, path, visited, timer)
+    return timer, len(visited), len(path), cost
